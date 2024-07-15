@@ -1,0 +1,36 @@
+{
+    "setting":{
+        "delay":3,
+        "log lv":0,
+        "mqtt":{
+            "mqtt on":true,
+            "IP":"localhost",
+            "PORT":1883
+        },
+        "minecraft":{
+            "IP":"localhost",
+            "PORT":"25565"
+        }
+    },
+    "lcd":[
+        "cpu",
+        "mem",
+        "bootTime",
+        "disk",
+        "disk",
+        "mcOnline",
+        "mcPing",
+        "httpGet",
+        "userMsg"
+    ],
+    "disk":[
+        "C:",
+        "D:"
+    ],
+    "httpGet":[
+        "lxdklp.top"
+    ],
+    "userMsg":[
+        "lxdklp"
+    ]
+}
