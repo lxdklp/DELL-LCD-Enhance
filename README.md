@@ -20,5 +20,7 @@
 - mcstatus
 - paho-mqtt
 - requests
+## 请先安装DELL的服务器管理工具racadm
+[下载链接](https://www.dell.com/support/home/zh-cn/drivers/driversdetails?driverid=9dd9y)
 
 ## 注意,Bug反馈请使用[issuse](https://github.com/lxdklp/DELL-LCD-Enhance/issues),功能提议与讨论请使用[discussions](https://github.com/lxdklp/DELL-LCD-Enhance/discussions)
