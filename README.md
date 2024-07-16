@@ -20,3 +20,5 @@
 - mcstatus
 - paho-mqtt
 - requests
+
+## 注意,Bug反馈请使用[issuse](https://github.com/lxdklp/DELL-LCD-Enhance/issues),功能提议与讨论请使用[discussions](https://github.com/lxdklp/DELL-LCD-Enhance/discussions)
