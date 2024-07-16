@@ -1,15 +1,16 @@
 {
     "setting":{
-        "delay":3,
-        "log lv":0,
+        "delay":1,
         "mqtt":{
             "mqtt on":true,
             "IP":"localhost",
-            "PORT":1883
+            "PORT":1883,
+            "TOPIC":"topic/LCD"
         },
         "minecraft":{
+            "minecraft on":true,
             "IP":"localhost",
-            "PORT":"25565"
+            "PORT":25565
         }
     },
     "lcd":[
@@ -27,8 +28,8 @@
         "C:",
         "D:"
     ],
-    "httpGet":[
-        "lxdklp.top"
+    "url":[
+        "https://lxdklp.top"
     ],
     "userMsg":[
         "lxdklp"
