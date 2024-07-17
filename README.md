@@ -3,6 +3,9 @@
 
 本项目使用 **GPL3.0** 协议开源
 
+# 配置教程
+[Wiki](https://github.com/lxdklp/DELL-LCD-Enhance/wiki) [bilibili](https://www.bilibili.com/video/BV12b421n7NL)
+
 ## 目前支持功能
 1. 设备相关
     - CPU占用

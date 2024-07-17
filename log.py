@@ -16,5 +16,5 @@ def log (lv,msg):
     msg = lv + "[" + time + "]" + msg + "\n"
 
     # 写入文件
-    with open(date + ".log", "a",encoding="utf-8") as f:
+    with open("./log/" + date + ".log", "a",encoding="utf-8") as f:
         f.write(msg)
