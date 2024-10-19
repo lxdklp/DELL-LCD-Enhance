@@ -11,6 +11,11 @@
             "minecraft on":true,
             "IP":"localhost",
             "PORT":25565
+        },
+        "log" : {
+            "lv":1,
+            "autoDel":true,
+            "save time":7
         }
     },
     "lcd":[

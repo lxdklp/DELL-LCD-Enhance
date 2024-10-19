@@ -8,49 +8,49 @@ from log import *
 from Execute import *
 
 # CPU
-def cpu ():
+def cpu (limit):
     cpu = psutil.cpu_percent(interval=1)
     cpu = str(cpu)
     cmd = "racadm set System.LCD.UserDefinedString " + '"CPU used:' + cpu + '%"'
     info = execute(cmd)
     if info == "Object value modified successfully":
-        log(0,"成功推送CPU占用,数据为" + cpu)
+        log(limit,1,"成功推送CPU占用,数据为" + cpu)
     elif info == "ERROR: Unable to perform requested operation.":
-        log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+        log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
     else:
-        log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+        log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
 
 # 内存
-def mem ():
+def mem (limit):
     mem = psutil.virtual_memory()
-    mem = mem.percent 
+    mem = mem.percent
     mem = str(mem)
     cmd = "racadm set System.LCD.UserDefinedString " + '"MEM used:' + mem + '%"'
     info = execute(cmd)
     info.rstrip()
     if info == "Object value modified successfully":
-        log(0,"成功推送内存占用,数据为" + mem)
+        log(limit,1,"成功推送内存占用,数据为" + mem)
     elif info == "ERROR: Unable to perform requested operation.":
-        log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+        log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
     else:
-        log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+        log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
 
 # 启动时间
-def bootTime():
+def bootTime(limit):
     time = psutil.boot_time()
     time = str(time)
     cmd = "racadm set System.LCD.UserDefinedString " + '"Boot Time:' + time + '"'
     info = execute(cmd)
     info.rstrip()
     if info == "Object value modified successfully":
-        log(0,"成功推送启动时间,数据为" + time)
+        log(limit,1,"成功推送启动时间,数据为" + time)
     elif info == "ERROR: Unable to perform requested operation.":
-        log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+        log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
     else:
-        log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+        log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
 
 # 硬盘
-def disk(path):
+def disk(limit,path):
     disk = psutil.disk_usage(path)
     disk = disk.percent
     disk = str(disk)
@@ -58,14 +58,14 @@ def disk(path):
     info = execute(cmd)
     info.rstrip()
     if info == "Object value modified successfully":
-        log(0,"成功推送" + str(path) + "盘占用,数据为" + disk)
+        log(limit,1,"成功推送" + str(path) + "盘占用,数据为" + disk)
     elif info == "ERROR: Unable to perform requested operation.":
-        log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+        log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
     else:
-        log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+        log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
 
 # Minecraft服务器在线人数
-def mcOnline(ip,port,minecraftOn):
+def mcOnline(limit,ip,port,minecraftOn):
     if minecraftOn == True:
         try:
             online = JavaServer.lookup(ip + ":" + port)
@@ -76,18 +76,18 @@ def mcOnline(ip,port,minecraftOn):
             info = execute(cmd)
             info.rstrip()
             if info == "Object value modified successfully":
-                log(0,"成功推送Minecraft服务器在线人数,数据为" + online)
+                log(limit,1,"成功推送Minecraft服务器在线人数,数据为" + online)
             elif info == "ERROR: Unable to perform requested operation.":
-                log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+                log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
             else:
-                log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+                log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
         except Exception as e:
-            log(2, f"推送Minecraft服务器在线人数时发生错误: {e}")
+            log(limit,3, f"推送Minecraft服务器在线人数时发生错误: {e}")
     if minecraftOn == False:
-        log(2,"未在配置文件中启用Minecraft服务器")
+        log(limit,3,"未在配置文件中启用Minecraft服务器")
 
 # Minecraft服务器延时
-def mcPing(ip, port, minecraftOn):
+def mcPing(limit,ip, port, minecraftOn):
     if minecraftOn == 1:
         try:
             ping = JavaServer.lookup(ip + ":" + str(port))
@@ -97,22 +97,22 @@ def mcPing(ip, port, minecraftOn):
             info = execute(cmd)
             info.rstrip()
             if info == "Object value modified successfully":
-                log(0,"成功推送Minecraft服务器延时,数据为" + ping)
+                log(limit,1,"成功推送Minecraft服务器延时,数据为" + ping)
             elif info == "ERROR: Unable to perform requested operation.":
-                log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+                log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
             else:
-                log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+                log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
         except Exception as e:
-            log(2, f"推送Minecraft服务器延时时发生错误: {e}")
+            log(limit,3, f"推送Minecraft服务器延时时发生错误: {e}")
     if minecraftOn == False:
-        log(2,"未在配置文件中启用Minecraft服务器")
+        log(limit,3,"未在配置文件中启用Minecraft服务器")
 
 # MQTT
 # 当接收到消息时的回调函数
 def on_message(client, userdata, message):
     global msg
     msg = message.payload.decode("utf-8")
-def quickMqtt(ip, port, topic, delay, mqttOn):
+def quickMqtt(limit,ip, port, topic, delay, mqttOn):
     if mqttOn == True:
         global msg
         msg = None
@@ -130,23 +130,23 @@ def quickMqtt(ip, port, topic, delay, mqttOn):
             cmd = "racadm set System.LCD.UserDefinedString " + '"' + msg + '"'
             info = execute(cmd)
             if info == "Object value modified successfully":
-                log(0,"已接收到新的MQTT讯息,并且成功推送到LCD面板,数据为" + msg)
+                log(limit,1,"已接收到新的MQTT讯息,并且成功推送到LCD面板,数据为" + msg)
                 msg = None
                 time.sleep(delay)
             elif info == "ERROR: Unable to perform requested operation.":
-                log(2,"已接收到新的MQTT讯息,但是没有推送到LCD面板,请检测服务器LCD面板是否设置为自定义字符串模式")
+                log(limit,3,"已接收到新的MQTT讯息,但是没有推送到LCD面板,请检测服务器LCD面板是否设置为自定义字符串模式")
                 msg = None
             else:
-                log(2,"已接收到新的MQTT讯息,但是推送信息至LCD面板时发生未知错误:" + str(info))
+                log(limit,3,"已接收到新的MQTT讯息,但是推送信息至LCD面板时发生未知错误:" + str(info))
                 msg = None
         # 如果没有接收到消息
         else:
-            log(0,"未收到新的MQTT讯息")
+            log(limit,1,"未收到新的MQTT讯息")
     if mqttOn == False:
         time.sleep(delay)
 
 # HTTP请求
-def httpGet(url):
+def httpGet(limit,url):
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -155,27 +155,27 @@ def httpGet(url):
             info = execute(cmd)
             info.rstrip()
             if info == "Object value modified successfully":
-                log(0,"成功请求" + url + ",数据为" + msg)
+                log(limit,1,"成功请求" + url + ",数据为" + msg)
             elif info == "ERROR: Unable to perform requested operation.":
-                log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+                log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
             else:
-                log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+                log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
         else:
-            log(1, "请求" + url + f"时失败,状态码: {response.status_code}")
+            log(limit,2, "请求" + url + f"时失败,状态码: {response.status_code}")
             return None
     except requests.exceptions.RequestException as e:
-        log(2,"请求" + url +  f"时发生错误: {e}")
+        log(limit,3,"请求" + url +  f"时发生错误: {e}")
         return None
-    
+
 # 自定义信息
-def userMsg(msg):
+def userMsg(limit,msg):
     str(msg)
     cmd = "racadm set System.LCD.UserDefinedString " + msg + '"'
     info = execute(cmd)
     info.rstrip()
     if info == "Object value modified successfully":
-        log(0,"成功推送自定义信息,信息为" + msg)
+        log(limit,1,"成功推送自定义信息,信息为" + msg)
     elif info == "ERROR: Unable to perform requested operation.":
-        log(2,"请检测服务器LCD面板是否设置为自定义字符串模式")
+        log(limit,3,"请检测服务器LCD面板是否设置为自定义字符串模式")
     else:
-        log(2,"推送信息至LCD面板时发生未知错误:" + str(info))
+        log(limit,3,"推送信息至LCD面板时发生未知错误:" + str(info))
