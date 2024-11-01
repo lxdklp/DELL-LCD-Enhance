@@ -27,7 +27,7 @@ def log (limit,lv,msg):
 
 def delLog(limit, saveTime):
     # 获取当前日期
-    currentDate = datetime.datetime.now()
+    currentDate = datetime.now()
 
     # 查找所有 log 文件
     logFiles = glob.glob(os.path.join("./log/", "*.log"))
@@ -35,7 +35,7 @@ def delLog(limit, saveTime):
     for logFile in logFiles:
         # 获取文件创建时间
         creationTime = os.path.getctime(logFile)
-        creationDate = datetime.datetime.fromtimestamp(creationTime)
+        creationDate = datetime.fromtimestamp(creationTime)
 
         # 计算文件创建日期与当前日期的差距
         days_difference = (currentDate - creationDate).days

@@ -110,4 +110,4 @@ while 1:
     else:
         lcdDisplay = lcdDisplay + 1
     # 日志自动删除
-    delLog(limit,autoDel,saveTime)
+    delLog(limit,saveTime)
